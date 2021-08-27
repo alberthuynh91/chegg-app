@@ -1,23 +1,33 @@
+import React, {useState, useEffect} from 'react'
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App = () => {
+
+  const [apiKey, setApiKey] = useState('')
+  const [data, setData] = useState({})
+
+  const handleChange = (event) => {
+    console.log(`what is event: `, event)
+    console.log(`what is event.target.value: `, event.target.value)
+    setApiKey(event.target.value)
+  }
+
+  const handleClick = () => {
+    // fetchRepos(apiKey).then((data) => {
+    //   setData(data)
+    // })
+  }
+
+  useEffect(() => {
+    // make api call
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Enter Github API Key
+      <input onChange={handleChange}></input>
+      <button onChange={handleClick}></button>
     </div>
   );
 }
