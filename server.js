@@ -14,13 +14,13 @@ app.get('/api/hello', (req, res) => {
 
 app.get('/api/git', async (req, res) => {
   // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-  const octokit = new Octokit({ auth: `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` });
+  const octokit = new Octokit({ auth: `AN_ACCESS_TOKEN` });
 
-  // const response = await octokit.request('GET /users/{username}/repos', {
-  //   username: 'alberthuynh91'
-  // })
+  const response = await octokit.request('GET /users/{username}/repos', {
+    username: 'alberthuynh91'
+  })
 
-  const response = await octokit.request('GET /repositories')
+  // const response = await octokit.request('GET /repositories')
 
   console.log(`what is response? : `, response)
   res.send({ response })
