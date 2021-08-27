@@ -30,7 +30,7 @@ app.get('/api/git/issues', async (req, res) => {
   console.log(`what is req.query? : `, req.query)
   const { repo, owner } = req.query
   // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-  const octokit = new Octokit({ auth: `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` });
+  const octokit = new Octokit({ auth: `AUTH_TOKEN` });
   if (repo, owner) {
     const response = await octokit.request('GET /repos/{owner}/{repo}/issues', {
       owner,

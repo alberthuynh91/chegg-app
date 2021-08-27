@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import logo from './logo.svg';
 import { getRepoName, getOwnerName, formatCreatedDate, formatUpdatedDate } from './utils'
 import './App.css';
 
@@ -8,7 +7,8 @@ const Issues = (props) => {
   console.log(`what is issues? : `, issues)
   return (
     issues.length > 0 ? issues.map((issue) => {
-      return <Issue issue={issue} />
+      const { id } = issue
+      return <Issue key={id} className="issues-container" issue={issue} />
     }) : null
   )
 }
@@ -98,9 +98,9 @@ const App = () => {
       <input onChange={handleChange}></input>
       <button onChange={handleClick}></button>
       <div>
-        Repositories
         <Repositories repositories={repositories} setSelectedRepo={setSelectedRepo} setIssues={setIssues} />
         <Issues issues={issues} />
+
       </div>
     </div>
     
