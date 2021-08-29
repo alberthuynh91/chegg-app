@@ -12,25 +12,21 @@ app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
+const authKey = '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'
 app.get('/api/git', async (req, res) => {
   // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-  const octokit = new Octokit({ auth: `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` });
+  const octokit = new Octokit({ auth: authKey });
 
   const response = await octokit.request('GET /users/{username}/repos', {
     username: 'alberthuynh91'
   })
-
-  // const response = await octokit.request('GET /repositories')
-
-  console.log(`what is response? : `, response)
   res.send({ ...response })
 })
 
 app.get('/api/git/issues', async (req, res) => {
-  console.log(`what is req.query? : `, req.query)
   const { repo, owner } = req.query
   // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-  const octokit = new Octokit({ auth: `AUTH_TOKEN` });
+  const octokit = new Octokit({ auth: authKey });
   if (repo, owner) {
     const response = await octokit.request('GET /repos/{owner}/{repo}/issues', {
       owner,
@@ -38,11 +34,6 @@ app.get('/api/git/issues', async (req, res) => {
     })
     res.send({ ...response })
   }
-  
-
-  // const response = await octokit.request('GET /repositories')
-
-  console.log(`what is response? : `, response)
   res.send({ ...response })
 })
 
