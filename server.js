@@ -12,7 +12,7 @@ app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
-const authKey = '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'
+const authKey = ''
 app.get('/api/git', async (req, res) => {
   // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
   const octokit = new Octokit({ auth: authKey });
