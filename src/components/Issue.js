@@ -10,17 +10,17 @@ const Issue = (props) => {
 
   const handleUp = () => {
     const cpIssues = [...issues]
-    const newIndex = index === 0 ? index : index - 1 
+    const updatedIndex = index === 0 ? index : index - 1 
     cpIssues.splice(index, 1)
-    cpIssues.splice(newIndex, 0, issue)
+    cpIssues.splice(updatedIndex, 0, issue)
     setIssues(cpIssues)
   }
 
   const handleDown = () => {
     const cpIssues = [...issues]
-    const newIndex = index === cpIssues.length - 1 ? index : index + 1
+    const updatedIndex = index === cpIssues.length - 1 ? index : index + 1
     cpIssues.splice(index, 1)
-    cpIssues.splice(newIndex, 0, issue)
+    cpIssues.splice(updatedIndex, 0, issue)
     setIssues(cpIssues)
   }
 
