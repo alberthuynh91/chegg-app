@@ -25,3 +25,8 @@ yarn install
 ```sh
 yarn dev
 ```
+
+Then in your browser, navigate to
+```sh
+http://localhost:3000/
+```
