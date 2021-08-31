@@ -11,37 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
-.repository-item {
-  cursor: pointer;
-  border: 1px solid black;
-  max-width: 350px;
-}
-
-.issue-item {
-  border: 1px solid black;
-  cursor: pointer;
-}
-
-.issues-container {
-  max-width: 500px;
-}
-
-.avatar {
-  max-width: 30px;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
-}

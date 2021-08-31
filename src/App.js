@@ -18,12 +18,11 @@ const App = () => {
   }
 
   const fetchRepos = (apiKey) => {
-    setIsFetching(true)
     console.log(`what is apiKey in fetchRepos: `, apiKey)
     if (apiKey !== '' && apiKey !== undefined) {
+      setIsFetching(true)
       fetch(`/api/git?apiKey=${apiKey}`)
         .then((res) => {
-          console.log(`what is res? : `, res)
           if (res.ok) {
             return res.json()
           } else {
@@ -34,14 +33,14 @@ const App = () => {
           console.log(`setting repositories: `, data)
           setError(undefined)
           setRepositories(data)
-          setIsFetching(false)
         })
         .catch((error) => {
           console.log(`error getting api key: `, error)
           setError(error)
+        })
+        .finally(() => {
           setIsFetching(false)
         })
-        //.finally(() => {})
     }
   }
 
@@ -84,7 +83,7 @@ const App = () => {
     }
     console.log(`what is state in useEffect? : `, state, issues)
     if (issues !== undefined) {
-      console.log(`>>>>> setting state in localStorage`)
+      console.log(`>>>>> setting state in localStorage: `, state)
       window.localStorage.setItem('cachedState', JSON.stringify(state));
     }
     
@@ -93,35 +92,37 @@ const App = () => {
   useEffect(() => {
     fetchRepos()
   }, [])
-
-  console.log(`what is error in render: `, error)
   
   return (
     <div className="App">
-      Enter Github API Key
-      <input value={apiKey} onChange={handleChange}></input>
-      <button onClick={handleSubmit}>Submit</button>
-      <button onClick={handleClear}>Clear</button>
-      { isFetching ?
+      <div className="input-container">
+        <div>Enter Github API Key</div>
+        <input value={apiKey} onChange={handleChange}></input>
+        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleClear}>Clear</button>
+      </div>
       
+      { isFetching ?
           <Spinner />
           : 
           <div>
             { error?.message ? 
               <ErrorMsg message={error} />
-              : 
-              <div className="row">
-                <div className='column'>
-                  <Repositories
-                    apiKey={apiKey}
-                    repositories={repositories}
-                    setSelectedRepo={setSelectedRepo}
-                    setIssues={setIssues}
-                    setIsFetching={setIsFetching}
-                  />
-                </div>
-                <div className='column'>
-                  <Issues issues={issues} setIssues={setIssues} />
+              :
+              <div className="content-container">
+                <div className="row">
+                  <div className='column'>
+                    <Repositories
+                      apiKey={apiKey}
+                      repositories={repositories}
+                      setIssues={setIssues}
+                      selectedRepo={selectedRepo}
+                      setSelectedRepo={setSelectedRepo}
+                    />
+                  </div>
+                  <div className='column'>
+                    <Issues issues={issues} setIssues={setIssues} />
+                  </div>
                 </div>
               </div>
             }

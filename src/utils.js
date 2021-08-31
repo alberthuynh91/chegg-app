@@ -17,3 +17,7 @@ export const formatCreatedDate = (d) => {
 export const formatUpdatedDate = (d) => {
   return moment(d).fromNow();
 }
+
+export const isValidAuthKey = (authKey) => {
+  return authKey !== "" && authKey !== undefined
+}

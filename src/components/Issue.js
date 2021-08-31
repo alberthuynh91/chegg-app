@@ -26,13 +26,17 @@ const Issue = (props) => {
 
   return (
     <div className="issue-item" onClick={() => {}}>
-      <div><img className="avatar" src={avatar_url}/></div>
-      <div>{title}</div>
-      <div>{updated}</div>
-      <div>{created}</div>
-      <div>
-        <button onClick={handleUp}>Move up</button>
-        <button onClick={handleDown}>Move down</button>
+      <div className="left">
+        <div><img className="avatar" src={avatar_url}/></div>
+        <div className="dates">Created: {created}</div>
+        <div className="dates">Last Updated: {updated}</div>
+      </div>
+      <div className="right">
+        <span className="title">{title}</span>
+        <span className="btn-container">
+          <button onClick={handleUp}>▲</button>
+          <button onClick={handleDown}>▼</button>
+        </span>
       </div>
     </div>
   )

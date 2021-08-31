@@ -1,9 +1,68 @@
 .App {
   text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.content-container {
+  padding: 40px;
 }
 
 .error-msg {
   color: red;
+}
+
+.repository-item {
+  cursor: pointer;
+  border: 1px solid black;
+  width: 100%
+}
+
+.repository-item.selected {
+  background-color: lightgray;
+}
+
+.issue-item {
+  border: 1px solid black;
+  display: flex;
+  padding: 10px;
+}
+
+.issue-item .left {
+  width: 200px;
+}
+
+.issue-item .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.issue-item .dates {
+  font-size: 12px;
+}
+
+.issues-container {
+  max-width: 500px;
+}
+
+.avatar {
+  max-width: 30px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 2 1 auto;
 }
 
 .App-logo {
