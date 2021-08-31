@@ -7,10 +7,21 @@ const Issues = (props) => {
     return null
   }
   return (
-    issues.length > 0 ? issues.map((issue, index) => {
+    issues.length > 0 ? 
+    issues.map((issue, index) => {
       const { id } = issue
-      return <Issue key={id} index={index} className="issues-container" issue={issue} issues={issues} setIssues={setIssues} />
-    }) : <div>No issues found for this repository</div>
+      return (
+        <Issue
+          className="issues-container"
+          key={id}
+          index={index}
+          issue={issue}
+          issues={issues}
+          setIssues={setIssues}
+        />
+      )}) 
+      : 
+      <div>No issues found for this repository</div>
   )
 }
 

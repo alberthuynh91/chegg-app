@@ -4,8 +4,12 @@
   font-size: 20px;
 }
 
+.input-container {
+  margin-bottom: 20px;
+}
+
 .content-container {
-  padding: 40px;
+  padding: 20px 40px;
 }
 
 .error-msg {
@@ -43,6 +47,10 @@
   font-size: 12px;
 }
 
+.btn-container button {
+  cursor: pointer;
+}
+
 .issues-container {
   max-width: 500px;
 }
@@ -58,11 +66,14 @@
   width: 100%;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 2 1 auto;
+.row > .left {
+  flex: 1 auto;
+  max-width: 400px;
+  width: 400px;
+}
+
+.row > .right {
+  flex: 1 auto;
 }
 
 .App-logo {

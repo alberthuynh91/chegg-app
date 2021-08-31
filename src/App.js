@@ -30,12 +30,10 @@ const App = () => {
           }
         })
         .then(({ data }) => {
-          console.log(`setting repositories: `, data)
           setError(undefined)
           setRepositories(data)
         })
         .catch((error) => {
-          console.log(`error getting api key: `, error)
           setError(error)
         })
         .finally(() => {
@@ -61,12 +59,8 @@ const App = () => {
 
   useEffect(() => {
     const cachedState = window.localStorage.getItem('cachedState')
-    // console.log(`what is cachedIssue? : `, cachedIssue)
     if (cachedState !== 'undefined' && cachedState !== null) {
-      // console.log(`inside cachedIssue: `, cachedIssue)
       const state = JSON.parse(cachedState)
-      console.log(`what is cachedState: `, cachedState)
-      console.log(`what is state: `, state)
       setApiKey(state.apiKey)
       setRepositories(state.repositories)
       setSelectedRepo(state.selectedRepo)
@@ -81,12 +75,9 @@ const App = () => {
       selectedRepo,
       issues
     }
-    console.log(`what is state in useEffect? : `, state, issues)
     if (issues !== undefined) {
-      console.log(`>>>>> setting state in localStorage: `, state)
       window.localStorage.setItem('cachedState', JSON.stringify(state));
     }
-    
   }, [issues]);
 
   useEffect(() => {
@@ -111,7 +102,7 @@ const App = () => {
               :
               <div className="content-container">
                 <div className="row">
-                  <div className='column'>
+                  <div className="left">
                     <Repositories
                       apiKey={apiKey}
                       repositories={repositories}
@@ -120,7 +111,7 @@ const App = () => {
                       setSelectedRepo={setSelectedRepo}
                     />
                   </div>
-                  <div className='column'>
+                  <div className="right">
                     <Issues issues={issues} setIssues={setIssues} />
                   </div>
                 </div>
@@ -128,10 +119,7 @@ const App = () => {
             }
           </div>
       }
-      
-      
     </div>
-    
   );
 }
 
