@@ -2,7 +2,8 @@ import React from 'react'
 import { getRepoName, getOwnerName } from '../utils'
 
 const Repository = (props) => {
-  const { apiKey, url, selectedRepo, setSelectedRepo, setIssues,  } = props
+  const { formData, url, selectedRepo, setSelectedRepo, setIssues,  } = props
+  const { apiKey } = formData
   const repo = getRepoName(url)
   const owner = getOwnerName(url)
   const isSelectedRepo = url === selectedRepo

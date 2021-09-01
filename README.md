@@ -20,7 +20,6 @@ cd chegg-app
 yarn install
 ```
 
-
 ## Usage
 ```sh
 yarn dev
@@ -30,3 +29,14 @@ Then in your browser, navigate to
 ```sh
 http://localhost:3000/
 ```
+
+## Testing
+```sh
+yarn test
+```
+
+## Additional Improvements
+1) Add React Drag and Drop for reordering of Issues
+2) Clean up styling
+3) Add click through links to profile, issue, or repository
+4) Add additional unit tests to test the handlers and mock API calls

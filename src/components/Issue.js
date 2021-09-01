@@ -27,7 +27,7 @@ const Issue = (props) => {
   return (
     <div className="issue-item" onClick={() => {}}>
       <div className="left">
-        <div><img className="avatar" src={avatar_url}/></div>
+        <div><img className="avatar" src={avatar_url} alt="avatar" /></div>
         <div className="dates">Created: {created}</div>
         <div className="dates">Last Updated: {updated}</div>
       </div>
