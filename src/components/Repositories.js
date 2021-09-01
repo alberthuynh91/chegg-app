@@ -7,6 +7,7 @@ const Repositories = (props) => {
     repositories?.length > 0 ? repositories?.map((item) => {
       return (
         <Repository
+          key={item.id}
           {...item}
           formData={formData}
           setIssues={setIssues}

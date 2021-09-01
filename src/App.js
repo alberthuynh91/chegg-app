@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Repositories from './components/Repositories'
 import Issues from './components/Issues'
-import ErrorMsg from './components/ErrorMsg'
 import Spinner from './components/Spinner'
 import Form from './components/Form'
 import './App.css';
@@ -10,11 +9,11 @@ const initialFormData = {
   apiKey: ''
 }
 
-const App = () => {
-  const [formData, setFormData] = useState(initialFormData)
-  const [repositories, setRepositories] = useState({})
-  const [selectedRepo, setSelectedRepo] = useState({})
-  const [issues, setIssues] = useState(undefined)
+const App = (props) => {
+  const [formData, setFormData] = useState(props.formData || initialFormData)
+  const [repositories, setRepositories] = useState(props.repositories || {})
+  const [selectedRepo, setSelectedRepo] = useState('')
+  const [issues, setIssues] = useState(props.issues || undefined)
   const [error, setError] = useState(undefined)
   const [isFetching, setIsFetching] = useState(false)
 
@@ -78,12 +77,12 @@ const App = () => {
     if (issues !== undefined) {
       window.localStorage.setItem('cachedState', JSON.stringify(state));
     }
-  }, [issues]);
+  }, [issues, formData, repositories, selectedRepo]);
 
   useEffect(() => {
     fetchRepos()
   }, [])
-  
+
   return (
     <div className="App">
       <Form
