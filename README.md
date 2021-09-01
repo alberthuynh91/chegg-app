@@ -40,3 +40,4 @@ yarn test
 2) Clean up styling
 3) Add click through links to profile, issue, or repository
 4) Add additional unit tests to test the handlers and mock API calls
+5) Heroku Deployment
