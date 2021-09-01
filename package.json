@@ -16,13 +16,14 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "yarn start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "heroku-postbuild": "yarn install && yarn install --only=dev --no-shrinkwrap && npm run build"
   },
   "eslintConfig": {
     "extends": [
