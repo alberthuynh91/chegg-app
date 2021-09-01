@@ -1,11 +1,21 @@
 .App {
   text-align: center;
-  margin-top: 20px;
   font-size: 20px;
 }
 
 .form-container {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.form-container input {
+  min-height: 15px;
+  min-width: 307px;
+}
+
+.form-container button {
+  max-width: 100px;
 }
 
 .content-container {

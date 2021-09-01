@@ -12,13 +12,13 @@ const Form = (props) => {
   return (
     <div className="form-container">
       <form>
-        <label>
-          Enter Github API Key
-          <input type="text" value={apiKey} onChange={(event) => handleChange(event, 'apiKey')}></input>
-        </label>
+        <label>Enter Github API Key</label>
+        <div><input type="text" value={apiKey} onChange={(event) => handleChange(event, 'apiKey')}></input></div>
       </form>
-      <button onClick={handleSubmit}>Submit</button>
-      <button onClick={handleClear}>Clear</button>
+      <div>
+        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleClear}>Clear</button>
+      </div>
       <ErrorMsg message={error} />
     </div>
   )

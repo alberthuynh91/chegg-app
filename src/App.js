@@ -34,6 +34,7 @@ const App = (props) => {
         })
         .catch((error) => {
           setError(error)
+          handleInvalidInput()
         })
         .finally(() => {
           setIsFetching(false)
@@ -44,6 +45,13 @@ const App = (props) => {
   const handleSubmit = () => {
     const { apiKey } = formData
     fetchRepos(apiKey)
+  }
+
+  const handleInvalidInput = () => {
+    setRepositories({})
+    setSelectedRepo({})
+    setIssues(undefined)
+    localStorage.removeItem('cachedState')
   }
 
   const handleClear = () => {
@@ -77,7 +85,7 @@ const App = (props) => {
     if (issues !== undefined) {
       window.localStorage.setItem('cachedState', JSON.stringify(state));
     }
-  }, [issues, formData, repositories, selectedRepo]);
+  }, [issues]);
 
   useEffect(() => {
     fetchRepos()
