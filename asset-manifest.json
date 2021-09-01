@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/chegg-app/static/css/main.809b235b.chunk.css",
-    "main.js": "/chegg-app/static/js/main.84b71b45.chunk.js",
-    "main.js.map": "/chegg-app/static/js/main.84b71b45.chunk.js.map",
+    "main.css": "/chegg-app/static/css/main.27695ac3.chunk.css",
+    "main.js": "/chegg-app/static/js/main.94cd3d5e.chunk.js",
+    "main.js.map": "/chegg-app/static/js/main.94cd3d5e.chunk.js.map",
     "runtime-main.js": "/chegg-app/static/js/runtime-main.719d7683.js",
     "runtime-main.js.map": "/chegg-app/static/js/runtime-main.719d7683.js.map",
     "static/js/2.bd785623.chunk.js": "/chegg-app/static/js/2.bd785623.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.e6469766.chunk.js": "/chegg-app/static/js/3.e6469766.chunk.js",
     "static/js/3.e6469766.chunk.js.map": "/chegg-app/static/js/3.e6469766.chunk.js.map",
     "index.html": "/chegg-app/index.html",
-    "static/css/main.809b235b.chunk.css.map": "/chegg-app/static/css/main.809b235b.chunk.css.map",
+    "static/css/main.27695ac3.chunk.css.map": "/chegg-app/static/css/main.27695ac3.chunk.css.map",
     "static/js/2.bd785623.chunk.js.LICENSE.txt": "/chegg-app/static/js/2.bd785623.chunk.js.LICENSE.txt",
     "static/media/spinner.c7d9f081.gif": "/chegg-app/static/media/spinner.c7d9f081.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.719d7683.js",
     "static/js/2.bd785623.chunk.js",
-    "static/css/main.809b235b.chunk.css",
-    "static/js/main.84b71b45.chunk.js"
+    "static/css/main.27695ac3.chunk.css",
+    "static/js/main.94cd3d5e.chunk.js"
   ]
 }
