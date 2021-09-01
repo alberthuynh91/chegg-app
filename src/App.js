@@ -13,15 +13,15 @@ const defaultUserName = 'alberthuynh91'
 
 const App = (props) => {
   const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-  const { username } = params
+  const params = Object && Object.fromEntries && Object.fromEntries(urlSearchParams.entries()) || {}
+  const { username = defaultUserName } = params
   const [formData, setFormData] = useState(props.formData || initialFormData)
   const [repositories, setRepositories] = useState(props.repositories)
   const [selectedRepo, setSelectedRepo] = useState('')
   const [issues, setIssues] = useState(props.issues || undefined)
   const [error, setError] = useState(undefined)
   const [isFetching, setIsFetching] = useState(false)
-  const [userName, setUserName] = useState(username || defaultUserName)
+  const [userName, setUserName] = useState(username)
   const fetchRepos = (apiKey) => {
     if (apiKey !== '' && apiKey !== undefined) {
       setIsFetching(true)
@@ -68,6 +68,7 @@ const App = (props) => {
     setIsFetching(false)
     setUserName(defaultUserName)
     localStorage.removeItem('cachedState')
+    window.location.replace('/')
   }
 
   useEffect(() => {
