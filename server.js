@@ -14,14 +14,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/api/git', async (req, res, next) => {
   let octokit
-  const { apiKey: authKey } = req.query
+  const { apiKey: authKey, username } = req.query
   if (isValidAuthKey(authKey)) {
     try {
       // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
         octokit = new Octokit({ auth: authKey });
-        const response = await octokit.request('GET /users/{username}/repos', {
-          username: 'alberthuynh91'
-        })
+        const response = await octokit.request('GET /users/{username}/repos', { username })
         res.send({ ...response })
       } catch (error) {
         return next(new Error(error.toString()))
