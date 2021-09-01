@@ -3,22 +3,22 @@ import Repositories from './components/Repositories'
 import Issues from './components/Issues'
 import ErrorMsg from './components/ErrorMsg'
 import Spinner from './components/Spinner'
+import Form from './components/Form'
 import './App.css';
 
+const initialFormData = {
+  apiKey: ''
+}
+
 const App = () => {
-  const [apiKey, setApiKey] = useState('')
+  const [formData, setFormData] = useState(initialFormData)
   const [repositories, setRepositories] = useState({})
   const [selectedRepo, setSelectedRepo] = useState({})
   const [issues, setIssues] = useState(undefined)
   const [error, setError] = useState(undefined)
   const [isFetching, setIsFetching] = useState(false)
 
-  const handleChange = (event) => {
-    setApiKey(event.target.value)
-  }
-
   const fetchRepos = (apiKey) => {
-    console.log(`what is apiKey in fetchRepos: `, apiKey)
     if (apiKey !== '' && apiKey !== undefined) {
       setIsFetching(true)
       fetch(`/api/git?apiKey=${apiKey}`)
@@ -43,12 +43,12 @@ const App = () => {
   }
 
   const handleSubmit = () => {
-    console.log(`fetching with: `, apiKey)
+    const { apiKey } = formData
     fetchRepos(apiKey)
   }
 
   const handleClear = () => {
-    setApiKey('')
+    setFormData(initialFormData)
     setRepositories({})
     setSelectedRepo({})
     setIssues(undefined)
@@ -61,7 +61,7 @@ const App = () => {
     const cachedState = window.localStorage.getItem('cachedState')
     if (cachedState !== 'undefined' && cachedState !== null) {
       const state = JSON.parse(cachedState)
-      setApiKey(state.apiKey)
+      setFormData(state.formData)
       setRepositories(state.repositories)
       setSelectedRepo(state.selectedRepo)
       setIssues(state.issues)
@@ -70,7 +70,7 @@ const App = () => {
 
   useEffect(() => {
     const state = {
-      apiKey,
+      formData,
       repositories,
       selectedRepo,
       issues
@@ -86,37 +86,31 @@ const App = () => {
   
   return (
     <div className="App">
-      <div className="input-container">
-        <div>Enter Github API Key</div>
-        <input value={apiKey} onChange={handleChange}></input>
-        <button onClick={handleSubmit}>Submit</button>
-        <button onClick={handleClear}>Clear</button>
-      </div>
-      
+      <Form
+        formData={formData}
+        setFormData={setFormData}
+        handleSubmit={handleSubmit}
+        handleClear={handleClear}
+        error={error}
+      />  
       { isFetching ?
           <Spinner />
           : 
-          <div>
-            { error?.message ? 
-              <ErrorMsg message={error} />
-              :
-              <div className="content-container">
-                <div className="row">
-                  <div className="left">
-                    <Repositories
-                      apiKey={apiKey}
-                      repositories={repositories}
-                      setIssues={setIssues}
-                      selectedRepo={selectedRepo}
-                      setSelectedRepo={setSelectedRepo}
-                    />
-                  </div>
-                  <div className="right">
-                    <Issues issues={issues} setIssues={setIssues} />
-                  </div>
-                </div>
+          <div className="content-container">
+            <div className="content-row">
+              <div className="content-left">
+                <Repositories
+                  formData={formData}
+                  repositories={repositories}
+                  setIssues={setIssues}
+                  selectedRepo={selectedRepo}
+                  setSelectedRepo={setSelectedRepo}
+                />
               </div>
-            }
+              <div className="content-right">
+                <Issues issues={issues} setIssues={setIssues} />
+              </div>
+            </div>
           </div>
       }
     </div>

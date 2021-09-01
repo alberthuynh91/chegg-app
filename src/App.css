@@ -4,7 +4,7 @@
   font-size: 20px;
 }
 
-.input-container {
+.form-container {
   margin-bottom: 20px;
 }
 
@@ -47,6 +47,10 @@
   font-size: 12px;
 }
 
+.btn-container {
+  min-width: 60px;
+}
+
 .btn-container button {
   cursor: pointer;
 }
@@ -59,20 +63,20 @@
   max-width: 30px;
 }
 
-.row {
+.content-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.row > .left {
+.content-row > .content-left {
   flex: 1 auto;
   max-width: 400px;
   width: 400px;
 }
 
-.row > .right {
+.content-row > .content-right {
   flex: 1 auto;
 }
 
