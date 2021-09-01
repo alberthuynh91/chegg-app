@@ -9,18 +9,23 @@ const initialFormData = {
   apiKey: ''
 }
 
+const defaultUserName = 'alberthuynh91'
+
 const App = (props) => {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  const { username } = params
   const [formData, setFormData] = useState(props.formData || initialFormData)
-  const [repositories, setRepositories] = useState(props.repositories || {})
+  const [repositories, setRepositories] = useState(props.repositories)
   const [selectedRepo, setSelectedRepo] = useState('')
   const [issues, setIssues] = useState(props.issues || undefined)
   const [error, setError] = useState(undefined)
   const [isFetching, setIsFetching] = useState(false)
-
+  const [userName, setUserName] = useState(username || defaultUserName)
   const fetchRepos = (apiKey) => {
     if (apiKey !== '' && apiKey !== undefined) {
       setIsFetching(true)
-      fetch(`/api/git?apiKey=${apiKey}`)
+      fetch(`/api/git?apiKey=${apiKey}&username=${userName}`)
         .then((res) => {
           if (res.ok) {
             return res.json()
@@ -48,7 +53,7 @@ const App = (props) => {
   }
 
   const handleInvalidInput = () => {
-    setRepositories({})
+    setRepositories(undefined)
     setSelectedRepo({})
     setIssues(undefined)
     localStorage.removeItem('cachedState')
@@ -56,11 +61,12 @@ const App = (props) => {
 
   const handleClear = () => {
     setFormData(initialFormData)
-    setRepositories({})
+    setRepositories(undefined)
     setSelectedRepo({})
     setIssues(undefined)
     setError(undefined)
     setIsFetching(false)
+    setUserName(defaultUserName)
     localStorage.removeItem('cachedState')
   }
 
@@ -68,10 +74,13 @@ const App = (props) => {
     const cachedState = window.localStorage.getItem('cachedState')
     if (cachedState !== 'undefined' && cachedState !== null) {
       const state = JSON.parse(cachedState)
-      setFormData(state.formData)
-      setRepositories(state.repositories)
-      setSelectedRepo(state.selectedRepo)
-      setIssues(state.issues)
+      if (state.userName === userName) {
+        setFormData(state.formData)
+        setRepositories(state.repositories)
+        setSelectedRepo(state.selectedRepo)
+        setIssues(state.issues)
+        setUserName(state.userName)
+      }
     }
   }, []);
 
@@ -80,7 +89,8 @@ const App = (props) => {
       formData,
       repositories,
       selectedRepo,
-      issues
+      issues,
+      userName
     }
     if (issues !== undefined) {
       window.localStorage.setItem('cachedState', JSON.stringify(state));

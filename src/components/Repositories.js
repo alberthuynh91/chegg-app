@@ -3,6 +3,9 @@ import Repository from './Repository'
 
 const Repositories = (props) => {
   const { formData, repositories, setIssues, selectedRepo, setSelectedRepo } = props
+  if (repositories === undefined) {
+    return null
+  }
   return (
     repositories?.length > 0 ? repositories?.map((item) => {
       return (
@@ -15,7 +18,7 @@ const Repositories = (props) => {
           setSelectedRepo={setSelectedRepo}
         />
       )
-    }) : null
+    }) : <div>No repositories found</div>
   )
 }
 
